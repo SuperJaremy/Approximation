@@ -26,7 +26,8 @@ public class Main {
         for(Approximations i: Approximations.values()){
             approximations.add(i.solve(table));
         }
-        Approximation bestApproximation = approximations.stream().max(Comparator.comparingDouble(Approximation::getRSq)).get();
+        Approximation bestApproximation = approximations.stream().filter(x->!Double.valueOf(x.getRSq()).isNaN())
+                .max(Comparator.comparingDouble(Approximation::getRSq)).get();
         ChartDrawer drawer = new ChartDrawer(table.getX(), table.getY(), bestApproximation);
         Output out = new ConsoleOutput(bestApproximation);
         out.write();

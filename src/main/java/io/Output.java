@@ -2,13 +2,24 @@ package io;
 
 import approximation.Approximation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Output {
 
-    private final Approximation approximation;
+    protected final Approximation approximation;
+    protected List<String> strings;
 
     public Output(Approximation approximation){
         this.approximation = approximation;
+        strings = new ArrayList<>();
+        strings.add(String.format("Лучшая аппроксимирующая функция: %s", approximation));
+        strings.add(String.format("R^2: %f",approximation.getRSq()));
     }
 
-    public abstract void write();
+    public final void write(){
+        write(strings);
+    }
+
+    protected abstract void write(List<String> strings);
 }

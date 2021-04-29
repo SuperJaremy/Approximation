@@ -41,15 +41,16 @@ public class ChartDrawer extends JFrame {
         renderer.setSeriesPaint(0, Color.RED);
         renderer.setSeriesStroke(0, new BasicStroke(2f));
         renderer.setSeriesLinesVisible(0, false);
+        renderer.setSeriesShapesVisible(0,true);
         renderer.setSeriesPaint(1, Color.BLUE);
         renderer.setSeriesShapesVisible(1, false);
         renderer.setSeriesStroke(1, new BasicStroke(1.3f));
+        plot.setRenderer(renderer);
         plot.setBackgroundPaint(Color.WHITE);
         plot.setRangeGridlinesVisible(true);
         plot.setRangeGridlinePaint(Color.GRAY);
         plot.setDomainGridlinesVisible(true);
         plot.setDomainGridlinePaint(Color.GRAY);
-        plot.setRangeCrosshairStroke(new BasicStroke(2f));
         plot.getDomainAxis().setRange(new Range(min - length / 10, max + length / 10));
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
