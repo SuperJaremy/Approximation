@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,9 +27,15 @@ public class Main {
         for(Approximations i: Approximations.values()){
             approximations.add(i.solve(table));
         }
-        Approximation bestApproximation = approximations.stream().filter(x->!Double.valueOf(x.getRSq()).isNaN())
-                .max(Comparator.comparingDouble(Approximation::getRSq)).get();
-        ChartDrawer drawer = new ChartDrawer(table.getX(), table.getY(), bestApproximation);
+        List<Approximation> existingApproximations = approximations.stream().filter(
+                x->!Double.valueOf(x.getRSq()).isNaN()
+        ).collect(Collectors.toList());
+        Approximation bestApproximation =
+                existingApproximations.stream().min(Comparator.comparingDouble(x ->
+                        Math.pow(1 - x.getRSq(), 2))).get();
+        for(Approximation i: existingApproximations){
+            ChartDrawer drawer = new ChartDrawer(table.getX(), table.getY(), i);
+        }
         Output out = new ConsoleOutput(bestApproximation);
         out.write();
         System.out.println("Сохранить результат в файл? [y]es/[n]o");
