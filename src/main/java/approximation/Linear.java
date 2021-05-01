@@ -8,6 +8,7 @@ public class Linear extends HiddenLinear {
 
     public Linear(double[] X, double[] Y, int n) {
         super(X, Y, n);
+        type = "Линейная";
         r = correlation(X, Y, n);
         approximation = String.format("%f*x+%f", a, b);
     }

@@ -11,6 +11,7 @@ public class Polynomial extends Approximation {
 
     public Polynomial(double[] X, double[] Y, int n) {
         super(X, Y, n);
+        type = "Квадратичная";
         approximation = String.format("%f*x^2+%f*x+%f", a_0, a_1, a_2);
     }
 

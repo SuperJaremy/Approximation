@@ -5,6 +5,7 @@ public class Logarithmic extends HiddenLinear {
 
     public Logarithmic(double[] X, double[] Y, int n) {
         super(X, Y, n);
+        type = "Логарифмическая";
         approximation = String.format("%f*log(x)+%f",a,b);
     }
 

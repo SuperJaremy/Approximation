@@ -6,6 +6,7 @@ public class Exponential extends HiddenLinear {
     public Exponential(double[] X, double[] Y, int n) {
         super(X, Y, n);
         approximation = String.format("%f*e^(%f*x)", a, b);
+        type = "Экспоненциальная";
     }
 
     @Override

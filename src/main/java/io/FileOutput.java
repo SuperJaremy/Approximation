@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class FileOutput extends Output{
 
-    public FileOutput(Approximation approximation){
-        super(approximation);
+    public FileOutput(List<Approximation> approximations){
+        super(approximations);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class FileOutput extends Output{
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filename))){
             for (String i:
                  strings) {
-                writer.write(i);
+                writer.write(i+"\n");
             }
         }
         catch (IOException e){

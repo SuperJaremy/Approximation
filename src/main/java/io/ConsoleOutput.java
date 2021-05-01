@@ -5,8 +5,8 @@ import approximation.Approximation;
 import java.util.List;
 
 public class ConsoleOutput extends Output{
-    public ConsoleOutput(Approximation approximation){
-        super(approximation);
+    public ConsoleOutput(List<Approximation> approximations){
+        super(approximations);
     }
 
     @Override

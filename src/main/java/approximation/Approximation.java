@@ -4,9 +4,11 @@ import java.util.Arrays;
 
 public abstract class Approximation {
 
+    protected String type;
+
     private final double S;
 
-    private final double rms;
+    private final double SD;
 
     private final double RSq;
 
@@ -15,7 +17,7 @@ public abstract class Approximation {
     public Approximation(double[] X, double[] Y, int n) {
         solve(X, Y, n);
         S = deviation(X,Y,n);
-        rms = Math.sqrt(S/n);
+        SD = Math.sqrt(S/n);
         RSq = RSq(X,Y,n);
     }
 
@@ -37,8 +39,8 @@ public abstract class Approximation {
         return 1 - S/(sum1-Math.pow(sum2,2)/n);
     }
 
-    public double getRms() {
-        return rms;
+    public double getSD() {
+        return SD;
     }
 
     public double getRSq() {
@@ -48,5 +50,9 @@ public abstract class Approximation {
     @Override
     public String toString(){
         return approximation;
+    }
+
+    public String getType(){
+        return type;
     }
 }

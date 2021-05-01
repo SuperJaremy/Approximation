@@ -28,20 +28,21 @@ public class Main {
             approximations.add(i.solve(table));
         }
         List<Approximation> existingApproximations = approximations.stream().filter(
-                x->!Double.valueOf(x.getRSq()).isNaN()
+                x->!Double.valueOf(x.getSD()).isNaN()
         ).collect(Collectors.toList());
         Approximation bestApproximation =
-                existingApproximations.stream().min(Comparator.comparingDouble(x ->
-                        Math.pow(1 - x.getRSq(), 2))).get();
+                existingApproximations.stream().min(Comparator.comparingDouble(
+                        Approximation::getSD
+                )).get();
         for(Approximation i: existingApproximations){
             ChartDrawer drawer = new ChartDrawer(table.getX(), table.getY(), i);
         }
-        Output out = new ConsoleOutput(bestApproximation);
+        Output out = new ConsoleOutput(existingApproximations);
         out.write();
         System.out.println("Сохранить результат в файл? [y]es/[n]o");
         str = input.next().trim();
         if(str.equals("y")){
-            out = new FileOutput(bestApproximation);
+            out = new FileOutput(existingApproximations);
             out.write();
         }
     }

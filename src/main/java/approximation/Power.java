@@ -5,6 +5,7 @@ public class Power extends HiddenLinear {
 
     public Power(double[] X, double[] Y, int n) {
         super(X, Y, n);
+        type="Степенная";
         approximation = String.format("%f*x^%f", a, b);
     }
 
